@@ -47,4 +47,16 @@ class CookBookTest < Minitest::Test
     expected = ["Cheese", "Macaroni", "Ground Beef", "Bun"]
     assert_equal expected, @cookbook.ingredients
   end
+
+  def test_it_can_find_the_highest_calorie_meal
+    @cookbook.add_recipe(@recipe1)
+    @cookbook.add_recipe(@recipe2)
+    @recipe1.add_ingredient(@ingredient1, 2)
+    @recipe1.add_ingredient(@ingredient2, 8)
+    @recipe2.add_ingredient(@ingredient1, 2)
+    @recipe2.add_ingredient(@ingredient3, 4)
+    @recipe2.add_ingredient(@ingredient4, 1)
+
+    assert_equal @recipe2, @cookbook.highest_calorie_meal
+  end
 end
